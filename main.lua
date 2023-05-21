@@ -2,7 +2,7 @@
 -- the non-regressive noise smoothing
 -- algorithm by Ian Betz: https://www.desmos.com/calculator/iwykl7r4in
 
--- duely note: this script has NOT been optimised
+-- duely note: this script has NOT been optimized
 
 -- globals
 _G["_SW"] = love.graphics.getWidth();
@@ -75,21 +75,21 @@ local function pre_render()
 
         love.graphics.setColor(1, 0, 0, 0.5);
 
+        -- render noise
         for i = 2, #noise do
             love.graphics.circle("fill", noise[i].x, noise[i].y, 1);
             love.graphics.line(noise[i].x, noise[i].y, noise[i - 1].x, noise[i - 1].y);
         end
 
         love.graphics.setColor(0, 1, 0);
-
+        
+        -- render smoothed noise
         for i = 2, #smooth do
-            -- love.graphics.circle("fill", smooth[i].x, smooth[i].y, 1);
             love.graphics.line(smooth[i].x, smooth[i].y, smooth[i - 1].x, smooth[i - 1].y);
             
         end
 
         love.graphics.reset();
-
     love.graphics.setCanvas();
 end
 
@@ -112,10 +112,11 @@ function love.draw()
         pre_render();
     end
     
-
+    -- quick tips
     love.graphics.print("key: UP will increase smoothness\nkey: DOWN will decrease smoothness\nkey: R will generate a new graph");
 end
 
+-- graph regen
 function love.keypressed(key)
     if (key == "r") then
         noise_gen(200);
