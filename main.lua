@@ -93,11 +93,8 @@ local function pre_render()
     love.graphics.setCanvas();
 end
 
-
--- utility
-function love.draw()
-    love.graphics.draw(buffer);
-
+function love.update(dt) {
+        
     -- decrease smoothness
     if (love.keyboard.isDown("down") and smoothing_factor < 5) then
         smoothing_factor = smoothing_factor + 0.01;
@@ -111,7 +108,12 @@ function love.draw()
         smooth_gen(5);
         pre_render();
     end
-    
+}
+
+-- utility
+function love.draw()
+    love.graphics.draw(buffer);
+        
     -- quick tips
     love.graphics.print("key: UP will increase smoothness\nkey: DOWN will decrease smoothness\nkey: R will generate a new graph");
 end
